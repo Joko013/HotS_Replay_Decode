@@ -13,8 +13,8 @@ import login_info
 
 def import_heroprotocol(protocol_name):
     try:
-        #global protocol
-        protocol = import_module(protocol_name)
+        import_module(protocol_name)
+        prot = protocol_name
     except ImportError:
         g = Github(login_info.user, login_info.password)
 
@@ -26,6 +26,6 @@ def import_heroprotocol(protocol_name):
 
                 with open(os.path.join('C:/Users/admin/HotS_Replay_Decode/heroprotocol27/',protocol_name), 'w') as f:
                     f.write(data)
-    prot = 'heroprotocol27.{}'.format(protocol_name[:-3])
+        prot = 'heroprotocol27.{}'.format(protocol_name[:-3])
     return prot
 

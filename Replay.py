@@ -12,6 +12,9 @@ import csv
 #import mpyq module, replay file, decode build number from protocol
 import mpyq
 import pandas as pd
+from import_heroprotocol import import_heroprotocol      
+    
+
 
 
 class Replays_list(object):
@@ -66,6 +69,7 @@ class Replay_file(object):
         self.players_dead = None
         self.tracker_events = None
         self.filename = filename
+        
                 
     def decode_replay(self):
            
@@ -76,8 +80,13 @@ class Replay_file(object):
         protocol = import_module('heroprotocol27.protocol47479')
         header = protocol.decode_replay_header(mpq.header['user_data_header']['content'])
         build_number = header['m_version']['m_baseBuild']
-        module_name = 'heroprotocol27.protocol{}'.format(build_number)
-        protocol = import_module(module_name)
+        module_name = 'protocol{}.py'.format(build_number) #heroprotocol27.
+        
+        protocol_name = import_heroprotocol(module_name)
+        protocol = import_module(protocol_name)           
+            
+            
+            
         
         #player list
         details = protocol.decode_replay_details(mpq.read_file('replay.details'))

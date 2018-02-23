@@ -82,8 +82,8 @@ class Replay_file(object):
         build_number = header['m_version']['m_baseBuild']
         module_name = 'protocol{}.py'.format(build_number) #heroprotocol27.
         
-        protocol_name = import_heroprotocol(module_name)
-        protocol = import_module(protocol_name)           
+        
+        protocol = import_heroprotocol(module_name)        
             
             
             

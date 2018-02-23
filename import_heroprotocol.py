@@ -13,7 +13,7 @@ import login_info
 
 def import_heroprotocol(protocol_name):
     try:
-        prot = import_module(protocol_name)
+        prot = import_module('heroprotocol27.{}'.format(protocol_name[:-3]))
         
     except ImportError:
         g = Github(login_info.user, login_info.password)
